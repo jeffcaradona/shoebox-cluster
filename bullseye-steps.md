@@ -1,4 +1,5 @@
     This was last updated on 2023-01-14 and not yet tested on a fresh Raspberry Pi OS Lite (Bullseye) install
+    
     ---
     
     $ sudo apt update && sudo apt dist-upgrade -y
