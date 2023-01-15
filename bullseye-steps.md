@@ -51,32 +51,54 @@
 
     $ sudo mv /etc/dnsmasq.conf /etc/dnsmasq.conf.orig
     $ sudo nano /etc/dnsmasq.conf
-    # listening interface
+    # listening interface br0 covers traffic from eth0 and wlan0
     interface=br0
+    # ignore the WAN #eth1
+    except-interface=eth1
     listen-address=192.168.50.1
-    expand-hosts
 
-    bind-dynamic
-    domain-needed
+    # logging
+    log-facility=/var/log/dnsmasq.log
+    log-queries
+
+    # disables dnsmasq reading any other files like /etc/resolv.conf for nameservers
+    no-resolv
 
     # Upstream Name Servers
-    server=1.1.1.1
-    server=1.0.0.1
+    server=1.1.1.1@eth1
+    server=1.0.0.1@eth1
+    server=8.8.8.8@eth1
+    server=8.8.4.4@eth1
 
+
+    #This is the only DHCP server int he cluster
+    dhcp-authoritative
     # Pool of IP addresses served via DHCP
     dhcp-range=192.168.50.100,192.168.50.199,255.255.255.0,24h
 
-    # Local wireless DNS domain
-    domain=sb.cluster
+    # Add local-only domains here, queries in these domains are answered
+    # from /etc/hosts or DHCP only.
+    local=/sb.cluster/
+
+    # Set the domain for dnsmasq. this is optional, but if it is set, it
+    # does the following things.
+    # 1) Allows DHCP hosts to have fully qualified domain names, as long
+    #     as the domain part matches this setting.
+    # 2) Sets the "domain" DHCP option thereby potentially setting the
+    #    domain of all systems configured by DHCP
+    # 3) Provides the domain part for "expand-hosts"
+    domain=sb.cluster,192.168.50.0/24
 
     # Alias for this router
     address=/sb.cluster/127.0.0.1
     address=/sb.cluster/192.168.50.1
 
+
     # DHCP Static Assignments
     dhcp-host=node00,192.168.50.10
     dhcp-host=node01,192.168.50.11
     dhcp-host=node02,192.168.50.12
+    
     # EOF
 
     $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
