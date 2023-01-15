@@ -6,13 +6,6 @@
     $ sudo apt install hostapd dnsmasq
     $ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
 
-    $ sudo nano /etc/systemd/network/br0-member-eth0.network
-
-    [Match]
-    Name=eth0
-    [Network]
-    Bridge=br0
-    # EOF
 
     $ sudo nano /etc/systemd/network/bridge-br0.netdev
 
@@ -20,6 +13,14 @@
     Name=br0
     Kind=bridge
     #EOF
+    
+    $ sudo nano /etc/systemd/network/br0-member-eth0.network
+
+    [Match]
+    Name=eth0
+    [Network]
+    Bridge=br0
+    # EOF
 
     $ sudo systemctl enable systemd-networkd
 
