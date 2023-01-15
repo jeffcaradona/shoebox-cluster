@@ -1,4 +1,4 @@
-This was last updated on 2023-01-14 and not yet tested on a fresh Raspberry Pi OS Lite (Bullseye) install
+This was last updated on 2023-01-15 and test udsing a fresh Raspberry Pi OS Lite (Bullseye) install on a Pi 3B
 
 ----
     
@@ -135,4 +135,4 @@ This was last updated on 2023-01-14 and not yet tested on a fresh Raspberry Pi O
     $ sudo systemctl unmask hostapd
     $ sudo systemctl enable hostapd
 
-    $ sudo systemctl reboot
+    $ sudo reboot
