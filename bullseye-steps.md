@@ -1,11 +1,11 @@
-    This was last updated on 2023-01-14 and not yet tested on a fresh Raspberry Pi OS Lite (Bullseye) install
-    
-    ----
+This was last updated on 2023-01-14 and not yet tested on a fresh Raspberry Pi OS Lite (Bullseye) install
+
+----
     
     $ sudo apt update && sudo apt dist-upgrade -y
     $ sudo apt install hostapd dnsmasq
     $ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
-
+    $ sudo reboot
 
     $ sudo nano /etc/systemd/network/bridge-br0.netdev
 
@@ -43,6 +43,8 @@
     # Enable IPv4 routing
     net.ipv4.ip_forward=1
     # EOF
+
+
 
     $ sudo iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
     $ sudo iptables -A FORWARD -i eth1 -o br0 -m state --state RELATED,ESTABLISHED -j ACCEPT
