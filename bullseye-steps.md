@@ -1,12 +1,21 @@
 This was last updated on 2023-01-15 and test udsing a fresh Raspberry Pi OS Lite (Bullseye) install on a Pi 3B
 
+Only do this step if using a SSD, HDD, or thumb drive. 
 ----
-    
+$ sudo nano /etc/dphys-swapfile
+
+    CONF_SWAPSIZE=1024
+
+----
+
+----    
     $ sudo apt update && sudo apt dist-upgrade -y
     $ sudo apt install hostapd dnsmasq
     $ sudo DEBIAN_FRONTEND=noninteractive apt install -y netfilter-persistent iptables-persistent
     $ sudo reboot
+----
 
+----
     $ sudo nano /etc/systemd/network/bridge-br0.netdev
 
     [NetDev]
