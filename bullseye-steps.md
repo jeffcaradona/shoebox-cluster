@@ -1,11 +1,10 @@
 This was last updated on 2023-01-15 and test udsing a fresh Raspberry Pi OS Lite (Bullseye) install on a Pi 3B
 
 Only do this step if using a SSD, HDD, or thumb drive. 
-----
+
 $ sudo nano /etc/dphys-swapfile
-
+----
     CONF_SWAPSIZE=1024
-
 ----
 
 ----    
