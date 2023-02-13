@@ -4,9 +4,9 @@ Only do this step if using a SSD, HDD, or thumb drive.
 
 
     $ sudo nano /etc/dphys-swapfile
-----
+
     CONF_SWAPSIZE=1024
-----
+
 
 ----    
     $ sudo apt update && sudo apt dist-upgrade -y
