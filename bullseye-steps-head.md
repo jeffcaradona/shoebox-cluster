@@ -1,6 +1,6 @@
 This was last updated on 2023-01-15 and test udsing a fresh Raspberry Pi OS Lite (Bullseye) install on a Pi 3B
 
-Only do this step if using a SSD, HDD, or thumb drive. 
+Only do this step if using a SSD or HDD. This will kill a MicroSD card and possibly a thumb drive. 
 
 
     $ sudo nano /etc/dphys-swapfile
